@@ -1,0 +1,30 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+#header{
+
+}
+#menu{
+    height: 500px;
+    opacity: 0.8;
+    background-color: rgb(255, 255, 255);
+    COLOR: rgb(12, 12, 12);
+    margin-top: 50px;
+    padding-left: 60px;
+    margin-left: 30px;
+    text-align: center;
+}
+#menu12{
+    background-color: rgb(255, 255, 255);
+    opacity: 0.8;
+}
+
+#menu12 {
+    line-height: 60px;
+}
+#banggia {
+    text-align: center;
+}

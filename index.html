@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Coffee Meow </title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./img/themify-icons/themify-icons.css">
+    <style>
+        table {
+            border-collapse: collapse;
+            border: 1px solid #901ed2;
+        }
+    </style>
+</head>
+<body style="background: url('photo-1501339847302-ac426a4a7cbb.png') top center / cover no-repeat;">
+<audio controls autoplay>
+    <source src="Nang-Tho-Hoang-Dung.mp3">
+</audio>
+
+
+<img src="./img/depositphotos_118727328-stock-illustration-coffee-logo-icon-vector.jpg" width="15%" height="150px">
+<h1 style="text-align: center;background-color: rgba(100,216,237,0.56); font-size: 50px">Coffee MEOW MEOW</h1>
+
+<div style="width: 100%; text-align: center">
+    <marquee style="color:#110505;width: 30%; ; background-color: rgba(237,100,100,0.56); font-size: 25px">Coffee Meow
+        Meow chào quý
+        khách
+    </marquee>
+</div>
+<div id="header">
+    <table style=" border: 1px solid black; width: 700px; float: right" id="menu12">
+        <tr>
+        </tr>
+        <tr>
+            <th> Số Bàn</th>
+            <th>Tên Đồ Uống</th>
+            <th>Size</th>
+            <th>Số Lượng</th>
+
+            <th>Trạng thái</th>
+            <th>Giá Tiền</th>
+        </tr>
+        <tbody id="menu1">
+
+        </tbody>
+    </table>
+    <table id="menu">
+        <th style="padding-left: 150px"> ODER</th>
+        <tr>
+            <td><b>Số Bàn</b></td>
+            <td>
+                <input type="number" value="" placeholder="số bàn" id="soban">
+            </td>
+        </tr>
+        <tr>
+            <td><b>Tên Đồ Uống: </b></td>
+            <td><input type="text" value="" placeholder="Tên Đồ Uống" id="tendo"></td>
+        </tr>
+        <tr>
+            <td><b>Số Lượng: </b></td>
+            <td><input type="number" value="" placeholder="Số Lượng" id="soluong" min="0"></td>
+        </tr>
+        <tr>
+            <td><b>Size: </b></td>
+            <td><SELECT id="Select">
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+            </SELECT></td>
+        </tr>
+        <tr>
+            <td>
+                <label>
+                    <button type="submit" name="gửi" onclick="Add()" id="gui"><b>Gửi</b></button>
+                </label>
+                <button type="button" onclick="sua()" id="sua"><b>Sửa</b></button>
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="footer" style="align-items: center; text-align: center;color: #000; background: lemonchiffon">
+    <a class="lienket" href="https://www.facebook.com/"><i class="ti-facebook"></i> </a>
+    <a class="lienket" href="https://www.instagram.com/"> <i class="ti-instagram"></i> </a>
+    <br>
+    <p>Thank You for listening <a href="https://codegym.vn/">codegym</a></p>
+</div>
+</body>
+<script>
+
+    let arr = []
+
+    let divshow = document.getElementById("menu1")
+
+    function inBangSanPham() {
+        let str = ""
+
+        for (i = 0; i < arr.length; i++) {
+
+            if (arr[i][2] == "S") {
+                arr[i][5] = 30000 * arr[i][3] + "VNĐ"
+            }
+            if (arr[i][2] !== "S" && arr[i][2] == "M") {
+                arr[i][5] = 40000 * arr[i][3] + "VNĐ"
+            }
+            if (arr[i][2] !== "S" && arr[i][2] !== "M" && arr[i][2] == "L") {
+                arr[i][5] = 50000 * arr[i][3] + "VNĐ"
+            }
+
+
+            str += `<tr id="banggia">
+                    <td> ${arr[i][0]}</td>
+                    <td> ${arr[i][1]}</td>
+                    <td> ${arr[i][2]} </td>
+                    <td> ${arr[i][3]} </td>
+                    <td> ${arr[i][4]} </td>
+                    <td> ${arr[i][5]} </td>
+
+                    <td>
+                    <button onclick="edit(${i})">edit</button>
+                    <button onclick="Delete(${i})">delete</button>
+
+                    </td>
+                    <td><button onclick="xong(${i})">cập nhật</button</td>
+
+</tr>`
+        }
+        divshow.innerHTML = str
+    }
+
+    function trave() {
+        document.getElementById("tendo").value = ""
+        document.getElementById("Select").value = "S"
+        document.getElementById("soluong").value = ""
+    }
+
+
+    function Add() {
+        let ban = document.getElementById("soban").value
+        let a = document.getElementById("tendo").value
+        let b = document.getElementById("Select").value
+        let c = document.getElementById("soluong").value
+        let d = "Chưa hoàn thành"
+        arr.push([ban, a, b, c, d])
+
+        trave()
+        inBangSanPham()
+    }
+
+    function Delete(i) {
+        arr.splice(i, 1)
+        inBangSanPham()
+    }
+
+    let j = 0
+
+    function edit(i) {
+        let ten = document.getElementById("tendo").value = arr[i][1]
+        let ten1 = document.getElementById("Select").value = arr[i][2]
+        let ten2 = document.getElementById("soluong").value = arr[i][3]
+        j = i
+    }
+
+    function sua() {
+        let ten12 = document.getElementById("tendo").value
+        let ten123 = document.getElementById("Select").value
+        let ten1234 = document.getElementById("soluong").value
+        arr[j][1] = ten12
+        arr[j][2] = ten123
+        arr[j][3] = ten1234
+        inBangSanPham()
+        trave()
+    }
+
+    function xong(vitri) {
+        arr[vitri][4] = "Hoàn thành"
+        inBangSanPham();
+    }
+
+</script>
+</html>
